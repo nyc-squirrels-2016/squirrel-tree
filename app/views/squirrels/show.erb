@@ -1,0 +1,13 @@
+<div>
+  <h1><%= @squirrel.name %></h1>
+  <p><%= @squirrel.name %> is a <%= @squirrel.color %> squirrel. Perhaps eventually there will be a blurb about <%= @squirrel.name %> here.</p>
+  <ul>
+    <li><a href="/squirrels/<%= @squirrel.id %>/edit">Edit this squirrel</a></li>
+    <li>
+      <form method="POST" action="/squirrels/<%= @squirrel.id %>">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="DELETE this squirrel">
+      </form>
+    </li>
+  </ul>
+</div>

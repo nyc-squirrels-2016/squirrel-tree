@@ -1,0 +1,8 @@
+<a href="/squirrels/new">Click here</a> to add a new squirrel.
+<% @squirrels.each do |squirrel| %>
+  <p>
+    <h1><%= squirrel.name %></h1>
+    <%= squirrel.name %> is a <%= squirrel.color %> squirrel.
+    <a href="/squirrels/<%= squirrel.id %>">Click here</a> to view <%= squirrel.name %>'s profile.
+  </p>
+<% end %>
