@@ -1,10 +1,6 @@
 <form method="POST" action="/squirrels">
   <input type="text" name="name" placeholder="Name" >
   <input type="text" name="color" placeholder="Color" >
-  <select name="tree_id">
-    <% @trees.each do |tree| %>
-      <option value="<%= tree.id %>"><%= tree.location %></option>
-    <% end %>
-  </select>
+  <input type="text" name="tree_location" placeholder="Tree location">
   <input type="submit" value="Create">
 </form>

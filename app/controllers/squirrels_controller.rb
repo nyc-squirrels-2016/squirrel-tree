@@ -13,7 +13,8 @@ get '/squirrels/new' do
 end
 
 post '/squirrels' do
-  squirrel = Squirrel.create(name: params[:name], color: params[:color], tree_id: params[:tree_id])
+  tree = Tree.where(location: params[:tree_location]).first_or_create
+  squirrel = Squirrel.create(name: params[:name], color: params[:color], tree: tree)
   redirect "/squirrels/#{squirrel.id}"
 end
 
