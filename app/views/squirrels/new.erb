@@ -1,6 +1,9 @@
+<%= erb :'_errors' %>
+
 <form method="POST" action="/squirrels">
-  <input type="text" name="name" placeholder="Name" >
-  <input type="text" name="color" placeholder="Color" >
+  <input type="text" name="squirrel[username]" placeholder="Name" value="<%= @squirrel.username %>" >
+  <input type="text" name="squirrel[color]" placeholder="Color" value="<%= @squirrel.color %>" >
+  <input type="password" name="squirrel[password]" placeholder="Password" >
   <input type="text" name="tree_location" placeholder="Tree location">
   <input type="submit" value="Create">
 </form>

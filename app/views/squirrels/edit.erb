@@ -1,6 +1,6 @@
 <form method="POST" action="/squirrels/<%= @squirrel.id %>">
   <input type="hidden" name="_method" value="PUT">
-  <input type="text" name="name" value="<%= @squirrel.name %>" >
+  <input type="text" name="name" value="<%= @squirrel.username %>" >
   <input type="text" name="color" value="<%= @squirrel.color %>" >
   <input type="submit" value="Update this squirrel">
 </form>

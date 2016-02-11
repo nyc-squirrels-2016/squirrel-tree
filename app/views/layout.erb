@@ -19,8 +19,16 @@
 </head>
 <body>
   <nav>
+    <% if logged_in? %>
+      <h3>Welcome, <%= current_squirrel.username %>, you're logged in.</h3>
+    <% end %>
     <ul>
       <li><a href="/">Home</a></li>
+      <% if logged_in? %>
+      <li><a href="/logout">Logout</a></li>
+      <% else %>
+      <li><a href="/login">Login</a></li>
+      <% end %>
     </ul>
   </nav>
   <%= yield %>

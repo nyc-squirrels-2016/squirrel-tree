@@ -1,8 +1,8 @@
 <div>
-  <h1><%= @squirrel.name %></h1>
-  <p><%= @squirrel.name %> is a <%= @squirrel.color %> squirrel. Perhaps eventually there will be a blurb about <%= @squirrel.name %> here.</p>
+  <h1><%= @squirrel.username %></h1>
+  <p><%= @squirrel.username %> is a <%= @squirrel.color %> squirrel. Perhaps eventually there will be a blurb about <%= @squirrel.username %> here.</p>
   <% if @squirrel.tree %>
-    <p><%= @squirrel.name %> belongs to the <%= @squirrel.tree.height %> foot tree in <%= @squirrel.tree.location %>.</p>
+    <p><%= @squirrel.username %> belongs to the <%= @squirrel.tree.height %> foot tree in <%= @squirrel.tree.location %>.</p>
   <% else %>
     <p>This squirrel does not belong to a tree.</p>
   <% end %>

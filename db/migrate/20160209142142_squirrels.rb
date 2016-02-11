@@ -1,7 +1,8 @@
 class Squirrels < ActiveRecord::Migration
   def change
     create_table :squirrels do |t|
-      t.string :name, null: false
+      t.string :username, null: false, index: true, unique: true
+      t.string :password_hash, null: false
       t.string :color, null: false
       t.integer :tree_id, index: true, foreign_key: true
 
