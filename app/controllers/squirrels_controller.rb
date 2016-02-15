@@ -1,24 +1,3 @@
-get '/login' do
-  redirect '/' if logged_in?
-  erb :login
-end
-
-post '/login' do
-  squirrel = Squirrel.find_by(username: params[:username])
-  if squirrel && squirrel.password == params[:password]
-    session[:squirrel_id] = squirrel.id
-    redirect '/'
-  else
-    @errors = ["Incorrect username or password. Please try again."]
-    erb :login
-  end
-end
-
-get '/logout' do
-  session.clear
-  redirect '/'
-end
-
 get '/' do
   @squirrels = Squirrel.all
   erb :'squirrels/index'
@@ -35,8 +14,7 @@ get '/squirrels/new' do
 end
 
 post '/squirrels' do
-  tree = Tree.where(location: params[:tree_location]).first_or_create
-  @squirrel = Squirrel.new(params[:squirrel])
+  @squirrel = Squirrel.new(build_squirrel_params(params))
   if @squirrel.save
     redirect "/squirrels/#{@squirrel.id}"
   else
@@ -77,5 +55,6 @@ delete '/squirrels/:id' do
 end
 
 def build_squirrel_params(params)
+  tree = Tree.where(location: params[:tree_location]).first_or_create
   params[:squirrel].merge({tree_id: tree.id})
 end
