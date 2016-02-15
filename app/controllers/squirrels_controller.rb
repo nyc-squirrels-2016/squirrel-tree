@@ -33,7 +33,7 @@ get '/squirrels/:id' do
 end
 
 get '/squirrels/:id/edit' do
-  redirect '/' unless logged_in? && params[:id].to_i == current_squirrel.id
+  halt 401 unless logged_in? && params[:id].to_i == current_squirrel.id
   @squirrel = Squirrel.find_by(id: params[:id])
   if @squirrel
     erb :'squirrels/edit'
@@ -43,15 +43,21 @@ get '/squirrels/:id/edit' do
 end
 
 put '/squirrels/:id' do
+  halt 401 unless logged_in? && params[:id].to_i == current_squirrel.id
   squirrel = Squirrel.find(params[:id])
   squirrel.update(name: params[:name], color: params[:color])
   redirect "/squirrels/#{squirrel.id}"
 end
 
 delete '/squirrels/:id' do
+  halt 401 unless logged_in? && params[:id].to_i == current_squirrel.id
   squirrel = Squirrel.find(params[:id])
   squirrel.destroy
   redirect '/'
+end
+
+error 401 do
+  erb :unauthorized
 end
 
 def build_squirrel_params(params)
