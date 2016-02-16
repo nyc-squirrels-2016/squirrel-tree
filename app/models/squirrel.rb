@@ -1,4 +1,6 @@
 class Squirrel < ActiveRecord::Base
+  default_scope { order(:created_at => :desc) }
+
   belongs_to :tree
   has_many :food_preferences
   has_many :preferred_foods, through: :food_preferences, source: :food
