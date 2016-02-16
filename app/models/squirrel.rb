@@ -1,5 +1,7 @@
 class Squirrel < ActiveRecord::Base
   belongs_to :tree
+  has_many :food_preferences
+  has_many :preferred_foods, through: :food_preferences, source: :food
 
   validates :username, uniqueness: true, presence: true
   validates :color, presence: true
