@@ -1,7 +1,19 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+  $("#new-squirrel-form").on("submit", function(e){
+    e.preventDefault();
+    var form = this;
+    var request = $.ajax({
+            type: "POST",
+            url: "/squirrels",
+            data: $(this).serialize()});
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+    request.done(function(response) {
+      $("#squirrel-container").prepend(response);
+      form.reset();
+    });
+
+    request.fail(function(error) {
+      $("#error-box").text(error.responseText);
+    });
+  });
 });

@@ -1,0 +1,10 @@
+<div id="new-squirrel-container">
+  <h1>Build a squirrel!</h1>
+  <form method="POST" action="/squirrels" id="new-squirrel-form">
+    <input type="text" name="squirrel[username]" placeholder="Name" value="<%= @squirrel.username %>" >
+    <input type="text" name="squirrel[color]" placeholder="Color" value="<%= @squirrel.color %>" >
+    <input type="password" name="squirrel[password]" placeholder="Password" >
+    <input type="text" name="tree_location" placeholder="Tree location">
+    <input type="submit" value="Create">
+  </form>
+</div>
