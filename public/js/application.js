@@ -18,8 +18,22 @@ $(document).ready(function() {
   });
 
   $("#squirrel-container").on("click", ".fancy", function(e) {
-    $(this).siblings(".squirrel-heading").css("color", getRandomColor());
-  })
+    // $(this).siblings(".squirrel-heading").css("color", getRandomColor());
+    var element = e.target;
+    var request = $.ajax({
+      type: 'GET',
+      url: '/colors',
+      dataType: 'json'
+    });
+
+    request.done(function(response) {
+      $(element).siblings(".squirrel-heading").css("color", response.color);
+    });
+
+    request.fail(function(error) {
+      console.log("Uh-oh! " + error);
+    });
+  });
 });
 
 function getRandomColor() {
