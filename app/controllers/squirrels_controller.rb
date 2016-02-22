@@ -17,7 +17,7 @@ post '/squirrels' do
   @squirrel = Squirrel.new(build_squirrel_params(params))
   if request.xhr?
     if @squirrel.save
-      erb :'squirrels/_short', locals: {squirrel: @squirrel}, layout: false
+      erb :'squirrels/_short_bio', locals: {squirrel: @squirrel}, layout: false
     else
       status 409
       return @squirrel.errors.full_messages.to_json
