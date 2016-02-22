@@ -5,10 +5,12 @@ $(document).ready(function() {
     var request = $.ajax({
             type: "POST",
             url: "/squirrels",
-            data: $(this).serialize()});
+            data: $(this).serialize(),
+            dataType: "json"});
 
-    request.done(function(response) {
-      $("#squirrel-container").prepend(response);
+    request.done(function(squirrel) {
+      var html = buildSquirrelDiv(squirrel);
+      $("#squirrel-container").prepend(html);
       form.reset();
     });
 
@@ -45,3 +47,24 @@ function getRandomColor() {
   return color;
 }
 // from http://stackoverflow.com/a/1484514 via Anatoliy
+
+function buildSquirrelDiv(squirrel) {
+  var html = ["<div>",
+      "<h1 class='squirrel-heading'>",
+      squirrel.u,
+      "</h1>",
+      "<p>",
+      squirrel.u,
+      " is a ",
+      squirrel.c,
+      " squirrel.<a href='/squirrels/",
+      squirrel.i,
+      "'>Click here</a> to view ",
+      squirrel.u,
+      "'s profile.</p>",
+      "<button class='fancy'>Click me!</button>",
+    "</div>"].join("");
+  return html;
+}
+
+
