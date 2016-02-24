@@ -5,7 +5,7 @@ end
 
 post '/login' do
   squirrel = Squirrel.find_by(username: params[:username])
-  if squirrel && squirrel.password == params[:password]
+  if squirrel && squirrel.authenticate(params[:password])
     session[:squirrel_id] = squirrel.id
     redirect '/'
   else
